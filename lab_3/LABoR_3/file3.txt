@@ -1,0 +1,3 @@
+﻿[ERROR] Invalid password
+[WARNING] Disk space low
+[ERROR] Login failed 3 times
