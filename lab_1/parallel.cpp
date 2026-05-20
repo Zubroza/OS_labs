@@ -21,24 +21,21 @@ void work(int s, int e, int id) {
 
 int main(int argc, char* argv[]) {
     int n = std::atoi(argv[1]);
-    int threads = std::thread::hardware_concurrency();
-    if (threads == 0) threads = 2;
-
+    int threads = 4; 
+    
     std::vector<std::thread> t;
-    int step = (n - 1) / threads;
-
+    int step = (n - 1) / threads; 
+    
     for (int i = 0; i < threads; i++) {
         int s = 2 + i * step;
         int e = (i == threads - 1) ? n : s + step - 1;
-        if (s <= n) {
-            t.push_back(std::thread(work, s, e, i));
-        }
+        t.push_back(std::thread(work, s, e, i));
     }
-
+    
     for (auto& th : t) {
         th.join();
     }
-
+    
     std::cout << n << "! = " << global << std::endl;
     return 0;
 }
